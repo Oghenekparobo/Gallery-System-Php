@@ -3,6 +3,12 @@
  <div class="container-fluid">
 
      <div class="row">
+        <?php
+        $result = $database->query("SELECT * FROM users ");
+        $f = mysqli_fetch_array($result);
+        echo $f['username'];
+
+        ?>
 
          <div class="col-lg-12">
              <h1 class="page-header">
