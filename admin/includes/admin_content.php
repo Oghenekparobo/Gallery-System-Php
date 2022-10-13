@@ -4,9 +4,18 @@
 
      <div class="row">
         <?php
-        $result = $database->query("SELECT * FROM users ");
-        $f = mysqli_fetch_array($result);
-        echo $f['username'];
+        
+
+        $found_user =  User::find_users_id(1);
+        $result = User::instatiation($found_user);
+        echo  $result->username;
+        
+        // $users =  User::find_all_users();
+        // foreach ($users as $user) {
+        //    echo $user->username;
+        // }
+
+
 
         ?>
 
