@@ -21,7 +21,7 @@ class User
     {
         global $database;
         $result_set = self::find_this_query("SELECT * FROM users WHERE id= $id");
-        return !empty($result_set) ? $first_item = array_shift($result_set) : false;
+        return !empty($result_set) ? array_shift($result_set) : false;
       
         // $found_user = mysqli_fetch_array($result_set);
         // return $found_user;
@@ -38,6 +38,20 @@ class User
         }
         return $the_object_array;
     }
+
+    public static function verify_user($username , $password){
+        global $database;
+
+        $username = $database->escape_string($username);
+        $password = $database->escape_string($password);
+
+        $sql = "SELECT * FROM users WHERE username = '$username'";
+        $sql .= "AND password = '$password' LIMIT 1";
+        $result_set = self::find_this_query($sql);
+        return !empty($result_set) ? array_shift($result_set) : false;
+      
+    }
+
 
     public static function instatiation($the_record)
     {

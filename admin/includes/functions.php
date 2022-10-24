@@ -13,4 +13,9 @@ function my_autoloader($class) {
  spl_autoload_register('my_autoloader');
 
 
+
+//  function to redirect users
+function redirect($location){ 
+    header("location: {$location}");
+}
 ?>
