@@ -74,4 +74,54 @@ class User
        return  array_key_exists($the_attribute , $object_properties);
 
     }
+
+    // create method
+    public  function create(){ 
+        global $database;
+        $username =  $database->escape_string($this->username);
+        $password=   $database->escape_string($this->password);
+        $firstname = $database->escape_string($this->firstname);
+        $lastname =  $database->escape_string($this->lastname);
+    
+        $sql = "INSERT INTO users(username , password , firstname , lastname)";
+        $sql .= " VALUES('$username', '$password' , '$firstname' , '$lastname')";
+
+        if($database->query($sql)){ 
+            $this->id = $database->insert_id();
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    // update method
+    public function update(){
+        global $database;
+        $id =  $database->escape_string($this->id);
+        $username =  $database->escape_string($this->username);
+        $password=   $database->escape_string($this->password);
+        $firstname = $database->escape_string($this->firstname);
+        $lastname =  $database->escape_string($this->lastname);
+
+        $sql =  "UPDATE users SET  username =   '$username', password =   '$password', firstname =  '$firstname',lastname =   '$lastname' WHERE id = $id";
+
+        $database->query($sql);
+
+        return (mysqli_affected_rows($database->connection) == 1 ) ? true : false;
+    
+    }
+
+    // delete method
+
+    public function delete(){ 
+        global $database;
+        $id =  $database->escape_string($this->id);
+        $sql = "DELETE FROM users WHERE id = $id";
+        $database->query($sql);
+
+        return (mysqli_affected_rows($database->connection) == 1 ) ? true : false;
+    
+
+
+    }
 }

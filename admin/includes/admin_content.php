@@ -9,6 +9,13 @@
         $found_user =  User::find_users_id(1);
         $result = User::instatiation($found_user);
         echo  $result->username;
+
+        $user = new User();
+        $user->id =3 ;
+    
+
+        $user->delete();
+        
         
         // $users =  User::find_all_users();
         // foreach ($users as $user) {
