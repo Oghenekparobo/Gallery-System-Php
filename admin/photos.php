@@ -1,11 +1,17 @@
-<?php include("includes/header.php"); ?>
+<?php include "includes/header.php";?>
+<?php if(!$session->is_signed_in()){ redirect('login.php');}?>
+<?php              
 
+$photos = Photo::find_all();
+
+
+?>
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
-    <?php include("includes/top_nav.php") ?>
+    <?php include "includes/top_nav.php"?>
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-    <?php include("includes/side_nav.php") ?>
+    <?php include "includes/side_nav.php"?>
     <!-- /.navbar-collapse -->
 </nav>
 
@@ -20,17 +26,39 @@
             <div class="col-lg-12">
                 <h1 class="page-header">
                     Photos
-                    <small>Subheading</small>
+                    <small>pictures list</small>
                 </h1>
-                <ol class="breadcrumb">
-                    <li>
-                        <i class="fa fa-dashboard"></i> <a href="index.php">Dashboard</a>
-                    </li>
-                    <li class="active">
-                        <i class="fa fa-file"></i> Blank Page
-                    </li>
-                </ol>
-            </div>
+
+
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr class="text-capitalize">
+                            
+                           <th>id</th>
+                           <th>photo</th>
+                           <th>filename</th>
+                           <th>title</th>
+                           <th>size</th>
+                        </tr>
+                      
+                        </thead>
+                        <tbody>
+                        <tr>
+                        <?php foreach ($photos as $photo) : ?>
+                            <td><?php echo $photo->id?></td>
+                           <td><img src="<?php echo $photo->picture_path()?>" alt="photos"></td>
+                           <td><?php echo $photo->filename?></td>
+                           <td><?php echo $photo->title?></td>
+                           <td><?php echo $photo->size?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+
+                </div>
+
+             </div>
         </div>
         <!-- /.row -->
 
@@ -39,4 +67,4 @@
 </div>
 <!-- /#page-wrapper -->
 
-<?php include("includes/footer.php"); ?>
+<?php include "includes/footer.php";?>

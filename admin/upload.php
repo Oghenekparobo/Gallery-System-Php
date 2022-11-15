@@ -1,5 +1,28 @@
 <?php include("includes/header.php"); ?>
+<?php if(!$session->is_signed_in()){ redirect('login.php');}?>
 
+
+<?php 
+ $message = "";
+if(isset($_POST['submit'])){
+    $photo = new Photo();
+    $photo->title = $_POST['title'];
+    $photo->set_file($_FILES['file_upload']);
+
+    if($photo->save()){
+        $message = "photo uploaded successfully";
+    }else{
+        $message = join("<br>" , $photo->custom_errors);
+    }
+    
+    
+}
+
+
+
+
+
+?>
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
@@ -16,20 +39,25 @@
     <div class="container-fluid">
 
         <div class="row">
-
+            <?php echo $message; ?>
             <div class="col-lg-12">
                 <h1 class="page-header">
                     Uploads
-                    <small>Subheading</small>
+                    <small>upload image</small>
                 </h1>
-                <ol class="breadcrumb">
-                    <li>
-                        <i class="fa fa-dashboard"></i> <a href="index.php">Dashboard</a>
-                    </li>
-                    <li class="active">
-                        <i class="fa fa-file"></i> Blank Page
-                    </li>
-                </ol>
+                <div class="col-md-6">
+                <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="text" name="title" class="form-group">
+                    </div>
+                    <div class="form-group">
+                        <input type="file" name="file_upload">
+                    </div>
+                    <input type="submit" value="submit" name="submit">
+               </form>
+            
+                </div>
+               
             </div>
         </div>
         <!-- /.row -->

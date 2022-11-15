@@ -11,14 +11,27 @@
             // echo  $result->username;
 
 
-            $user =  new User();
-            $user->id= 37;
-            $user->username = 'coco';
-            $user->password = '5-5-5-5-';
-            $user->lastname = 'lqlq';
-            $user->firstname = 'llqnd';
+            // $user =  new User();
+            // // $user->id= 37;
+            // $user->username = 'mr man';
+            // $user->password = 'sugar';
+            // $user->lastname = 'cramel';
+            // $user->firstname = 'hush';
 
-            $user->update();
+            // $photo = Photo::find_all();
+            // print_r($photo);
+
+
+            // $photo =  new Photo();
+            // $photo->id= 3;
+            // $photo->title= 'hello';
+            // $photo->description = 'hippie';
+            // $photo->type = 'mb49';
+            // $photo->filename= 'land';
+            // $photo->size= 'large';
+            // $photo->save();
+           
+            // $user->update();
             // $user->find_all_users();
             // foreach ($users as $user) {
             //        echo $user->username;
@@ -36,11 +49,14 @@
             // $user->create();
 
 
-            // $users =  User::find_all_users();
-            // foreach ($users as $user) {
-            //    echo $user->username;
+            // $photos =  Photo::find_all();
+            // // echo $users->username;
+            // foreach ( $photos as $photo) {
+            //    echo $photo->description;
             // }
 
+
+            // echo INCLUDE_PATH;
 
 
             ?>
