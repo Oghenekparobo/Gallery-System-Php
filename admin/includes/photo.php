@@ -65,7 +65,7 @@ class Photo extends Db_object
             $this->custom_errors[] = "the file is not available";
             return false;
         }
-         $target_path = SITE_ROOT.DS.'admin'.DS.$this->upload_directory.DS.$this->filename;
+         $target_path = SITE_ROOT.DS.'admin'.DS.$this->picture_path();
        
         if(file_exists( $target_path )){
          $this->custom_errors[]= "file already exists";
@@ -84,5 +84,16 @@ class Photo extends Db_object
 
         $this->create();
        }
+    }
+
+    // delete photo method 
+    public function delete_photo(){
+        if($this->delete()){
+            $target_path = SITE_ROOT.DS.'admin'.DS.$this->picture_path();
+            // delete file
+           return unlink( $target_path) ? true : false;
+        }else{
+            return false;
+        }
     }
 }
