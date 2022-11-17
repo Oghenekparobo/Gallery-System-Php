@@ -23,6 +23,12 @@
 
 
             // $photo =  new Photo();
+            // $photo = Photo::find_by_id(9);
+            // $photo->caption = 'next generation';
+            // $photo->alternate_text = 'inspired by a helicopter';
+            // $photo->description ='blue white blue';
+            //    $photo->save();
+    //   echo   $photo->type;
             // $photo->id= 3;
             // $photo->title= 'hello';
             // $photo->description = 'hippie';

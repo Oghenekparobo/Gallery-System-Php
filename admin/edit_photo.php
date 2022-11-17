@@ -10,9 +10,10 @@ redirect('photos.php');
     $photo = Photo::find_by_id($id);
     if(isset($_POST['update'])){ 
         $photo->title = $_POST['title'];
-        $$photo->caption = $_POST['caption'];
-        $$photo->alternate_text = $_POST['alternate_text'];
-        $$photo->description = $_POST['description'];
+        $photo->caption = $_POST['caption'];
+        $photo->alternate_text = $_POST['alternate_text'];
+        $photo->description = $_POST['description'];
+        $photo->save();
       }
       
       
@@ -48,9 +49,13 @@ redirect('photos.php');
                 </h1>
 
             <form action="" method="post" enctype="">
-                <div class="col-md-8">
-                <div class="form-group text-capitalize">
+                <div class="col-md-8 text-capitalize">
+                <div class="form-group ">
+                <label for="title">Title</label>
                     <input class="form-control"  type="text" name="title" class="form-group"  value="<?php echo $photo->title; ?>">
+                </div>
+                <div class="form-group ">
+                    <a href="#" class="thumbnail" ><img src="<?php echo $photo->picture_path()?>" alt="photos"></a>
                 </div>
                  <div class="form-group">
                     <label for="caption">Caption</label>
@@ -59,10 +64,10 @@ redirect('photos.php');
                 <div class="form-group">
                     <label for="alternate_text">alternate text</label>
                     <input class="form-control"  type="text" name="alternate_text" class="form-group"  value="<?php echo $photo->alternate_text; ?>" >
-                </div>
+                </div> 
                 <div class="form-group">
                     <label for="description">description</label>
-                    <textarea class="form-control" name="description" id="" cols="30" rows="10"  value="<?php echo $photo->description; ?>"></textarea>
+                    <textarea class="form-control" id="summernote" name="description" id="" cols="30" rows="10"><?php echo $photo->description; ?></textarea>
                 </div>
                 
                 </div>
@@ -81,21 +86,21 @@ redirect('photos.php');
                                    <span class="glyphicon glyphicon-calendar"></span> Uploaded on: April 22, 2030 @ 5:26
                                   </p>
                                   <p class="text ">
-                                    Photo Id: <span class="data photo_id_box">34</span>
+                                    Photo Id: <span class="data photo_id_box"><?php echo $photo->id; ?></span>
                                   </p>
                                   <p class="text">
-                                    Filename: <span class="data">image.jpg</span>
+                                    Filename: <span class="data"><?php echo $photo->filename; ?></span>
                                   </p>
                                  <p class="text">
-                                  File Type: <span class="data">JPG</span>
+                                  File Type: <span class="data"><?php echo $photo->type; ?></span>
                                  </p>
                                  <p class="text">
-                                   File Size: <span class="data">3245345</span>
+                                   File Size: <span class="data"><?php echo $photo->size; ?></span>
                                  </p>
                               </div>
                               <div class="info-box-footer clearfix">
                                 <div class="info-box-delete pull-left">
-                                <a href="" class="btn btn-danger btn-lg ">Delete</a>  
+                                <a href="delete.php?<?php echo $photo->id; ?>" class="btn btn-danger btn-lg ">Delete</a>  
                                 </div>
                                 <div class="info-box-update pull-right ">
                                     <input type="submit" name="update" value="Update" class="btn btn-primary btn-lg ">

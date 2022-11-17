@@ -47,8 +47,8 @@ $photos = Photo::find_all();
                         <tr>
                         <?php foreach ($photos as $photo) : ?>
                             <td><?php echo $photo->id?></td>
-                           <td>
-                            <img src="<?php echo $photo->picture_path()?>" alt="photos">
+                           <td >
+                            <img class="thumbnail" src="<?php echo $photo->picture_path()?>" alt="photos">
                             <!-- actions -->
                             <div class="text-uppercase pictures_link" >  
                                 <a href="edit_photo.php?id=<?php echo $photo->id?>">edit</a>
