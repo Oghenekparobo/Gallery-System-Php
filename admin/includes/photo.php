@@ -12,23 +12,10 @@ class Photo extends Db_object
     public $filename;
     public $alternate_text;
     public $size;
-    // temporary path for our images
-    public $temp_path;
+
     // directory for our images
     public $upload_directory = "images";
-    // custom errors
-    public $custom_errors = array();
-    // errors array
-    public $upload_errors = array(
-        UPLOAD_ERR_OK => "there s no error",
-        UPLOAD_ERR_INI_SIZE => "the uploaded file exceeds the upload max size directive",
-        UPLOAD_ERR_FORM_SIZE => "the uploaded file size exceeds the MAX_FILE_SIZE directive",
-        UPLOAD_ERR_PARTIAL => "the uploaded file was only partially uploaded",
-        UPLOAD_ERR_NO_FILE => "no file was uploaded",
-        UPLOAD_ERR_NO_TMP_DIR => "missing a temporary folder",
-        UPLOAD_ERR_CANT_WRITE => "failed to write to desk",
-        UPLOAD_ERR_EXTENSION => "a PHP extension stopped the file upload."
-    );
+ 
 
     // set file method ; this method is passing $_FILE['uploaded_file'] as an arguement
     public function set_file($file)
@@ -49,7 +36,7 @@ class Photo extends Db_object
         }
     }
 
-    // mehtod for dynamic image path
+    // methood for dynamic image path
     public function picture_path(){
         return $this->upload_directory.DS.$this->filename;
     }

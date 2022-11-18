@@ -20,10 +20,6 @@ redirect('photos.php');
 }
 
 
-
-
-
-
 ?>
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -52,18 +48,18 @@ redirect('photos.php');
                 <div class="col-md-8 text-capitalize">
                 <div class="form-group ">
                 <label for="title">Title</label>
-                    <input class="form-control"  type="text" name="title" class="form-group"  value="<?php echo $photo->title; ?>">
+                    <input class="form-control form-group"  type="text" name="title" value="<?php echo $photo->title; ?>">
                 </div>
                 <div class="form-group ">
                     <a href="#" class="thumbnail" ><img src="<?php echo $photo->picture_path()?>" alt="photos"></a>
                 </div>
                  <div class="form-group">
                     <label for="caption">Caption</label>
-                    <input class="form-control"  class="form-control"  type="text" name="caption" class="form-group"   value="<?php echo $photo->caption; ?>">
+                    <input class="form-control form-group"    type="text" name="caption"  value="<?php echo $photo->caption; ?>">
                 </div>
                 <div class="form-group">
                     <label for="alternate_text">alternate text</label>
-                    <input class="form-control"  type="text" name="alternate_text" class="form-group"  value="<?php echo $photo->alternate_text; ?>" >
+                    <input class="form-control form-group"  type="text" name="alternate_text"   value="<?php echo $photo->alternate_text; ?>" >
                 </div> 
                 <div class="form-group">
                     <label for="description">description</label>

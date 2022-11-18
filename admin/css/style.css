@@ -5,6 +5,13 @@
 
 }
 
+.user-img{
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+
+}
+
 .photo-info-box {
 
     border: 1px solid #e5e5e5;
