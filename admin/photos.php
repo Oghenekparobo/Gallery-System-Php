@@ -40,6 +40,7 @@ $photos = Photo::find_all();
                            <th>filename</th>
                            <th>title</th>
                            <th>size</th>
+                           <th>commentss</th>
                         </tr>
                       
                         </thead>
@@ -53,13 +54,19 @@ $photos = Photo::find_all();
                             <div class="text-uppercase pictures_link" >  
                                 <a href="edit_photo.php?id=<?php echo $photo->id?>">edit</a>
                                 <a href="delete_photo.php?id=<?php echo $photo->id?>">delete</a>
-                                <a href="#">view</a>
+                                <a href="../photo.php?id=<?php echo $photo->id?>">view</a>
                             </div>
                         
                         </td>
                            <td><?php echo $photo->filename?></td>
                            <td><?php echo $photo->title?></td>
                            <td><?php echo $photo->size?></td>
+                           <td>
+                            <?php 
+                              $comments = Comment::find_comment($photo->id);
+                              echo count( $comments);
+                            ?>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                         </tbody>

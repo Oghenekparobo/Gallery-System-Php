@@ -5,22 +5,40 @@
 $id = $_GET['id'];
 
 if(empty($id)){ 
-redirect('photos.php');
+redirect('users.php');
 }else{
     $user = User::find_by_id($id);
-    if(isset($_POST['update'])){ 
-        $user->username = $_POST['username'];
-        $user->firstname = $_POST['firstname'];
-        $user->lastname = $_POST['lastname'];
-        $user->password = $_POST['password'];
-        // $user->set_user($_FILES['img']);
-        var_dump( $user->set_user($_FILES['img']));
-        $user->save_user();
-      }
-      
-     
-}
+    $message = "";
+    
+if (isset($_POST['update'])) {
+    $user->username = $_POST['username'];
+    $user->firstname = $_POST['firstname'];
+    $user->lastname = $_POST['lastname'];
+    $user->password = $_POST['password'];
+    
 
+    if(!empty($_FILES['img'])){ 
+        $user->set_user($_FILES['img']);
+        if($user->save_user()){
+            $user->save();
+            redirect("edit_user.php?id={$user->id}");
+        }else{
+            $message = join("<br>" , $user->custom_errors);
+        }   
+       
+    }else{
+        $user->save();
+    }
+
+    
+   
+    
+    
+
+
+    }
+        
+     }
 
 ?>
 <!-- Navigation -->
@@ -34,6 +52,7 @@ redirect('photos.php');
 
 <div id="page-wrapper">
 
+
     <!-- Page Heading -->
 
     <div class="container-fluid">
@@ -41,16 +60,20 @@ redirect('photos.php');
         <div class="row">
 
             <div class="col-lg-12">
+                
                 <h1 class="page-header">
                    Edit users
-                    <small>make changes to your photo</small>
+                    <small><?php echo $message ?></small>
                 </h1>
+
+                <div class="col-md-6">
+                    <img class="user-img" src="<?php echo $user->image_path_and_placeholder();  ?>" alt="user image" >
+                </div>
 
                 <form action="" method="post" enctype="multipart/form-data">
                 <div class="col-md-8 text-capitalize">
                 <div class="form-group">
-                    <label for="img">user image</label>
-                    <input class="form-control"   type="file" name="img" value="<?php echo $user->image_path_and_placeholder(); ?>" >
+                    <input class="form-control"   type="file" name="img">
                 </div>
                  <div class="form-group">
                     <label for="Username">Username</label>

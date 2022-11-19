@@ -97,10 +97,10 @@ class Db_object
 
 
     // abstract itenary functon to create or update users
-    // public function save()
-    // {
-    //     return isset($this->id) ?  $this->update() : $this->create();
-    // }
+    public function save()
+    {
+        return isset($this->id) ?  $this->update() : $this->create();
+    }
 
     // create method
     public  function create()

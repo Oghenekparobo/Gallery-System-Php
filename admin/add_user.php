@@ -11,8 +11,9 @@
     $user->lastname = $_POST['lastname'];
     $user->password = $_POST['password'];
     $user->set_user($_FILES['img']);
+    $user->save_user();
 
-    if($user->save_user()){
+    if($user->save()){
         $message = "added user successfully";
     }else{
         $message = join("<br>" , $user->custom_errors);

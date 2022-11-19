@@ -71,7 +71,7 @@ class Photo extends Db_object
             return false;
         }
 
-        $this->create();
+      
        }
     }
 

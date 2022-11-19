@@ -55,9 +55,7 @@ class User extends Db_object
 
        // save image method
     public  function save_user(){
-      if($this->id){ 
-           $this->update();
-      }else{
+    
        if(!empty($this->custom_errors)){
            return false;
        }
@@ -74,18 +72,16 @@ class User extends Db_object
        }
 
        if(move_uploaded_file($this->temp_path , $target_path )){ 
-               if($this->create()){ 
+              
                    unset($this->temp_path);
                    return true;
-               }
+             
        }else{
-           $this->custom_errors = "file permission not granted";
-           return false;
+         $this->custom_errors = "file permission not granted";
+          return false;
+        }
+      
        }
-
-       $this->create();
-      }
-   }
 
      // delete user method 
      public function delete_user(){
