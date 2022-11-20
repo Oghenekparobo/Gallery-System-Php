@@ -98,7 +98,8 @@
                 <hr>
 
                 <!-- Preview Image -->
-                <img class="img-responsive" src="./admin<?php echo $photo->picture_path(); ?>" alt="">
+            
+                <img class="img-responsive" src="admin/<?php echo $photo->picture_path(); ?>" alt="photo_img">
 
                 <hr>
 
@@ -133,7 +134,8 @@
                 <?php foreach ($comments as $comment):?>
                 <div class="media">
                     <a class="pull-left" href="#">
-                        <img class="media-object" src="https://via.placeholder.com/50.png" alt="">
+                    <img  class="img-responsive media-img" src="admin/<?php echo $photo->picture_path(); ?>" alt="photo_img">
+
                     </a>
                  
                     <div class="media-body">

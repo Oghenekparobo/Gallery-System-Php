@@ -163,4 +163,15 @@ class Db_object
 
         return (mysqli_affected_rows($database->connection) == 1) ? true : false;
     }
+
+    // function to count users,photos and comments
+    public static function count_all(){
+        global $database;
+
+        $sql = "SELECT COUNT(*) FROM ".static::$db_table." ";
+        $result = $database->query($sql);
+        $row = mysqli_fetch_array($result);
+        return !empty($row) ? array_shift($row) : false;
+
+    }
 }
