@@ -1,4 +1,4 @@
-<?php require_once('admin/includes/init.php');?>
+<?php require_once 'admin/includes/init.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,13 +10,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Home - Start Bootstrap Template</title>
+    <title>gallery system</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/blog-home.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
    
 </head>
 
@@ -25,7 +27,7 @@
 
 
     <!-- Navigation -->
-<?php include("navigation.php"); ?>
+<?php include 'navigation.php'; ?>
 
     <!-- Page Content -->
     <div class="container">

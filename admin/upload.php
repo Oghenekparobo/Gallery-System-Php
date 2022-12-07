@@ -1,38 +1,39 @@
-<?php include("includes/header.php"); ?>
-<?php if(!$session->is_signed_in()){ redirect('login.php');}?>
+<?php include 'includes/header.php'; ?>
+<?php if (!$session->is_signed_in()) {
+    redirect('login.php');
+}?>
 
-
-<?php 
- $message = "";
-if(isset($_POST['submit'])){
+<?php $message = '';
+if (isset($_POST['submit'])) {
     $photo = new Photo();
     $photo->title = $_POST['title'];
+    // var_dump($_FILES['file_upload']);
+    // exit;
     $photo->set_file($_FILES['file_upload']);
 
-    if($photo->save()){
-        $message = "photo uploaded successfully";
-    }else{
-        $message = join("<br>" , $photo->custom_errors);
+    if ($photo->save()) {
+        $message = 'photo uploaded successfully';
+    } else {
+        $message = join('<br>', $photo->custom_errors);
     }
-    
-    
 }
 
-
-
-
-
 ?>
+
+
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
-    <?php include("includes/top_nav.php") ?>
+
+    <?php include 'includes/top_nav.php'; ?>
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-    <?php include("includes/side_nav.php") ?>
+    <?php include 'includes/side_nav.php'; ?>
     <!-- /.navbar-collapse -->
 </nav>
 
 <div id="page-wrapper">
+        
+
 
     <!-- Page Heading -->
 
@@ -67,4 +68,4 @@ if(isset($_POST['submit'])){
 </div>
 <!-- /#page-wrapper -->
 
-<?php include("includes/footer.php"); ?>
+<?php include 'includes/footer.php'; ?>
