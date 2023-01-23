@@ -13,6 +13,7 @@ require_once 'user.php';
 require_once 'photo.php';
 require_once 'comments.php';
 require_once 'sessions.php';
+require_once 'paginate.php';
 
 ?>
 
