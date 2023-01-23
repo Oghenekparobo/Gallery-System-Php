@@ -1,26 +1,27 @@
-<?php require_once('admin/includes/init.php');?>
-<?php if(!$session->is_signed_in()){ redirect('login.php');}?>
+<?php require_once 'admin/includes/init.php'; ?>
+<?php if (!$session->is_signed_in()) {
+    redirect('login.php');
+}?>
 <!DOCTYPE html>
 <html lang="en">
   <?php
-  if(empty($_GET['id'])){
-    redirect('index.php');
+  if (empty($_GET['id'])) {
+      redirect('index.php');
   }
     $photo = Photo::find_by_id($_GET['id']);
-  
-    if(isset($_POST['submit'])){ 
+
+    if (isset($_POST['submit'])) {
         $author = $_POST['author'];
         $body = $_POST['body'];
 
-        $new_comment =  Comment::create_comment( $photo->id , $author, $body );
-        if($new_comment && $new_comment->save()){
+        $new_comment = Comment::create_comment($photo->id, $author, $body);
+        if ($new_comment && $new_comment->save()) {
             redirect("photo.php?id=$photo->id");
         }
     }
-    
+
     $comments = Comment::find_comment($photo->id);
-    
-    
+
     ?>
 
 
@@ -45,44 +46,14 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
+    <?php include 'includes/header.php'; ?>
     <!-- Page Content -->
     <div class="container">
 
         <div class="row">
 
             <!-- Blog Post Content Column -->
-            <div class="col-lg-8">
+            <div class="col-lg-12">
 
                 <!-- Title -->
                 <h1><?php echo $photo->title; ?></h1>
@@ -131,7 +102,7 @@
                 <!-- Posted Comments -->
 
                 <!-- Comment -->
-                <?php foreach ($comments as $comment):?>
+                <?php foreach ($comments as $comment) { ?>
                 <div class="media">
                     <a class="pull-left" href="#">
                     <img  class="img-responsive media-img" src="admin/<?php echo $photo->picture_path(); ?>" alt="photo_img">
@@ -139,80 +110,23 @@
                     </a>
                  
                     <div class="media-body">
-                        <h4 class="media-heading"><?php echo $comment->author ?>
+                        <h4 class="media-heading"><?php echo $comment->author; ?>
                             <!-- <small>August 25, 2014 at 9:30 PM</small> -->
                         </h4>
-                       <?php echo  $comment->body ?>                 
+                       <?php echo $comment->body; ?>                 
                      </div>
 
                 </div>
-                <?php endforeach; ?>
+                <?php } ?>
             </div>
 
-            <!-- Blog Sidebar Widgets Column -->
-            <div class="col-md-4">
-
-                <!-- Blog Search Well -->
-                <div class="well">
-                    <h4>Blog Search</h4>
-                    <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                        </span>
-                    </div>
-                    <!-- /.input-group -->
-                </div>
-
-                <!-- Blog Categories Well -->
-                <div class="well">
-                    <h4>Blog Categories</h4>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /.row -->
-                </div>
-
-                <!-- Side Widget Well -->
-                <div class="well">
-                    <h4>Side Widget Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
-                </div>
-
-            </div>
-
-        </div>
+            
         <!-- /.row -->
 
         <hr>
 
         <!-- Footer -->
-        <footer>
+        <footer class="">
             <div class="row">
                 <div class="col-lg-12">
                     <p>Copyright &copy; Your Website 2014</p>
