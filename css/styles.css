@@ -1,4 +1,16 @@
-.photo{
+.photo {
     width: 200px !important;
     height: 100px !important;
+}
+
+
+/* home pagination */
+.pager .active a {
+    background-color: #000 !important;
+    color: #fff;
+}
+
+.pager .active a:hover {
+    background-color: #fff;
+    color: #000 !important;
 }
