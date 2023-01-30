@@ -17,7 +17,7 @@
         }
 
 
-        public function message($msg){
+        public function message($msg=""){
            if(!empty($msg)){
                $_SESSION['message'] = $msg;
             }else{
@@ -76,6 +76,7 @@
 
     $session = new Session();
 
+    $message = $session->message();
 
 
 

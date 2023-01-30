@@ -24,6 +24,7 @@ $users = User::find_all();
         <div class="row">
 
             <div class="col-lg-12">
+                
                 <h1 class="page-header">
                     Users
                     <small> <a href="add_user.php" class="btn btn-primary" >Add User</a> </small>

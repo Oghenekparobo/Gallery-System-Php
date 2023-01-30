@@ -25,6 +25,7 @@ if (empty($id)) {
             if ($user->save_user()) {
                 $user->save();
                 redirect("edit_user.php?id={$user->id}");
+                $session->message('the user has been updated');
             } else {
                 $message = join("<br>", $user->custom_errors);
             }

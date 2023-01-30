@@ -4,7 +4,7 @@
 class Photo extends Db_object
 {
     protected static $db_table = 'photos';
-    protected static $db_table_feilds = ['title', 'caption', 'description', 'type', 'filename', 'alternate_text',  'size'];
+    protected static $db_table_feilds = ['title', 'caption', 'description', 'type', 'filename', 'alternate_text', 'size'];
     public $id;
     public $title;
     public $caption;
@@ -38,7 +38,7 @@ class Photo extends Db_object
     // methood for dynamic image path
     public function picture_path()
     {
-        return $this->upload_directory.DS.$this->filename;
+        return $this->upload_directory . DS . $this->filename;
     }
 
     // save  method
@@ -57,7 +57,7 @@ class Photo extends Db_object
                 return false;
             }
 
-            $target_path = SITE_ROOT.DS.'admin'.DS.$this->picture_path();
+            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->picture_path();
 
             if (file_exists($target_path)) {
                 $this->custom_errors[] = 'file already exists';
@@ -83,11 +83,23 @@ class Photo extends Db_object
     public function delete_photo()
     {
         if ($this->delete()) {
-            $target_path = SITE_ROOT.DS.'admin'.DS.$this->picture_path();
+            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->picture_path();
             // delete file
             return unlink($target_path) ? true : false;
         } else {
             return false;
         }
+    }
+
+    public static function display_sidebar_data($photo_id)
+    {
+        $photo = Photo::find_by_id($photo_id);
+
+        $output = "<a class='thumbnail' width='100' href='#'> <img class='thumbnail' src=$photo->picture_path()?> alt='photos'></a>";
+        $output .= "<p>$photo->filename</p>";
+        $output .= "<p>$photo->type</p>";
+        $output .= "<p>$photo->size</p>";
+
+        echo $output;
     }
 }
