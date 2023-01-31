@@ -1,10 +1,10 @@
 <?php include 'includes/header.php'; ?>
 <?php if (!$session->is_signed_in()) {
     redirect('login.php');
-}?>
+} ?>
 
 <?php $message = '';
-if (isset($_POST['submit'])) {
+if (isset($_POST['file'])) {
     $photo = new Photo();
     $photo->title = $_POST['title'];
     // var_dump($_FILES['file_upload']);
@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
 </nav>
 
 <div id="page-wrapper">
-        
+
 
 
     <!-- Page Heading -->
@@ -46,19 +46,33 @@ if (isset($_POST['submit'])) {
                     Uploads
                     <small>upload image</small>
                 </h1>
-                <div class="col-md-6">
-                <form action="upload.php" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <input type="text" name="title" class="form-group">
+
+                <div class="py-5">
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <form action="upload.php" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <input type="text" name="title" class=" form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input type="file" name="file_upload">
+                                </div>
+                                <input type="submit" value="submit" name="file" class="py-5">
+                            </form>
+
+                        </div>
+
                     </div>
-                    <div class="form-group">
-                        <input type="file" name="file_upload">
-                    </div>
-                    <input type="submit" value="submit" name="submit">
-               </form>
-            
+
                 </div>
-               
+
+
+                <div class="row cx">
+                    <div class="col-lg-12">
+                        <form action="upload.php" class="dropzone" id="my-awesome-dropzone"></form>
+                    </div>
+                </div>
+
             </div>
         </div>
         <!-- /.row -->
